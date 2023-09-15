@@ -18,7 +18,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-
 app.get('/', async function (req, res) {
     const publicaciones = await publicacionModel.findAll();
     res.render('index', { publicaciones: publicaciones });
