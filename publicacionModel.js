@@ -11,6 +11,10 @@ const Publicacion = sequelize.define('Publicacion', {
     imagen: {
         type: DataTypes.STRING,
     },
+    fecha: {
+        type: DataTypes.DATEONLY,
+
+    },
 }, {
     timestamps: false,
     tableName: 'publicaciones',

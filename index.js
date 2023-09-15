@@ -4,7 +4,7 @@ const express = require('express')
 const helmet = require('helmet');
 
 const { DBTest } = require('./database.js');
-const tareaModel = require('./tareaModel.js');
+const publicacionModel = require('./publicacionModel.js');
 
 const app = express()
 const PORT = process.env.PORT
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', async function (req, res) {
     const publicaciones = await publicacionModel.findAll();
-    res.render('inicio', { publicacion: publicaciones });
+    res.render('index', { publicaciones: publicaciones });
 })
 
 app.get('/agregar', function (req, res) {
@@ -32,7 +32,7 @@ app.post('/agregar', async function (req, res) {
     const { titulo, descripcion, imagen } = req.body
     try {
         const nuevaPublicacion = await publicacionModel.create({
-            nombre: titulo,
+            titulo: titulo,
             descripcion: descripcion,
             imagen: imagen
         });
@@ -88,7 +88,7 @@ app.post('/editar/:id', async function (req, res) {
     try {
         const publicacionActualizada = await publicacionModel.update(
             {
-                nombre: tarea,
+                titulo: titulo,
                 descripcion: descripcion,
                 imagen: imagen
             }, {
